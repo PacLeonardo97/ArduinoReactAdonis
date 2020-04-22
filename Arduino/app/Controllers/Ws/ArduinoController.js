@@ -10,16 +10,15 @@ class ArduinoController {
     this.socket = socket;
     this.request = request;
 
-    console.log("A new subscription for room topic", socket.topic);
-    const ola = async () => {
+    const HandleArduino = async () => {
       const { type, color } = await Database.collection("arduinos")
         .sort({ field: "asc", _id: -1 })
         .findOne("_id");
       portSerial.write(`${type}\n`);
-      console.log(type, color);
       socket.broadcastToAll("message", { type, color });
     };
-    ola();
+
+    HandleArduino();
   }
 
   async onMessage(message) {

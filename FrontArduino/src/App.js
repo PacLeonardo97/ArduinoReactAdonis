@@ -1,39 +1,24 @@
-import React, { useState, useEffect } from "react";
-import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
-import Ws from "@adonisjs/websocket-client";
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { store, persistor } from "./ducks/stores";
+import TodoList from "./page/todoList";
+import Arduino from "./page/arduino";
 
 const App = () => {
-  const [lamp, setLamp] = useState("black");
-  const [light, setLight] = useState("black");
-  const endpoint = Ws("ws://192.168.1.103:3333");
-  const chat = endpoint.subscribe("changelight");
-
-  useEffect(() => {
-    endpoint.connect();
-  }, [endpoint]);
-
-  useEffect(() => {
-    chat.on("message", ({ color }) => {
-      setLamp(color);
-    });
-  });
-
-  const handleMessage = () => {
-    setLight((oldLight) => (oldLight === "black" ? "yellow" : "black"));
-    chat.emit("message", {
-      color: light,
-      type: light === "black" ? 0 : 1,
-    });
-  };
-
   return (
-    <div style={{ textAlign: "center" }}>
-      <button id="blue" onClick={handleMessage}>
-        trocar a cor
-      </button>
-      <br />
-      <EmojiObjectsIcon style={{ color: lamp, fontSize: "150px" }} />
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" component={TodoList} exact />
+            <Route path="/Arduino" component={Arduino} exact />
+          </Switch>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   );
 };
 
