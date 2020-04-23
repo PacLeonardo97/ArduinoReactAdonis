@@ -6,16 +6,14 @@ import { Creators as LoginActions } from "../../ducks/stores/login";
 
 const Login = ({ handleSubmit }) => {
   const dispatch = useDispatch();
-  const selector = useSelector((value) => value);
-  console.log("seletor", selector.session.payload);
   const onSubmit = (data) => {
     dispatch(LoginActions.Session(data));
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Field component={TextField} name="email" />
-      <Field component={TextField} name="password" />
+      <Field component={TextField} name="email" placeholder="Email" label="Email"/>
+      <Field component={TextField} name="password" placeholder="password" label="password" />
       <button type="submit">Fazer Login</button>
     </form>
   );

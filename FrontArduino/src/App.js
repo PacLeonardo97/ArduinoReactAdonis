@@ -5,12 +5,14 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./ducks";
 import { TodoList, Login, Arduino } from "./page";
 import { PrivateRoute, PublicRoute } from "./components/Route";
+import { Menu } from './components';
 
 const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={() => <div>loading</div>} persistor={persistor}>
         <BrowserRouter>
+          <Menu/>
           <Switch>
             <PublicRoute
               restricted={true}
