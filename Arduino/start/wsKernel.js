@@ -28,6 +28,6 @@ const globalMiddleware = [];
 | // use
 | Ws.channel('chat', 'ChatController').middleware(['auth'])
 */
-const namedMiddleware = {};
+const namedMiddleware = { auth: "Adonis/Middleware/Auth" };
 
 Ws.registerGlobal(globalMiddleware).registerNamed(namedMiddleware);

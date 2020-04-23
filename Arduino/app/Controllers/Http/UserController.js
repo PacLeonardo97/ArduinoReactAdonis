@@ -11,7 +11,6 @@ class UserController {
   async store({ request }) {
     const { username, email, password } = request.all();
     const user = new User();
-
     user.username = username;
     user.email = email;
     user.password = password;

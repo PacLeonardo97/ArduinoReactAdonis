@@ -1,8 +1,8 @@
 "use strict";
 const Arduino = use("App/Models/Arduino");
+const Database = use("Database");
 const SerialPort = require("serialport");
 const portSerial = new SerialPort("COM3", { baudRate: 9600 });
-const Database = use("Database");
 
 class ArduinoController {
   constructor(params) {
