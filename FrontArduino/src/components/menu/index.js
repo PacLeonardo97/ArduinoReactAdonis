@@ -7,7 +7,7 @@ import Lista from './list';
 
 export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
-  const [Drawer, setDrawer] = useState({ left: false });
+  const [Drawer, setDrawer] = useState('');
 
   const toggleDrawer = (anchor, open) => event => {
     if (

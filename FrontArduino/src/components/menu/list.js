@@ -6,12 +6,17 @@ import { useSelector } from 'react-redux';
 
 const Lista = () => {
   const selector = useSelector(store => store.session.payload);
-  const Logged = selector.length > 0;
-
   const history = useHistory();
+  const Logged = selector.length > 0;
+  
   const array = [{
       text:'Login',
       url: '/login',
+      Icon: <PersonIcon />,
+      Logged: !Logged
+    },{
+      text:'Registrar',
+      url: '/registrar',
       Icon: <PersonIcon />,
       Logged: !Logged
     }, {

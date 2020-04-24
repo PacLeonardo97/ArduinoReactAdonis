@@ -9,7 +9,7 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isLogin.length > 0 && restricted ? (
+        isLogin?.length > 0 && restricted ? (
           <Redirect to="/arduino" />
         ) : (
           <Component {...props} />

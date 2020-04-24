@@ -1,5 +1,6 @@
+import Register from './register';
 import Login from "./login";
 import Arduino from "./arduino";
 import TodoList from "./todoList";
 
-export { Login, Arduino, TodoList };
+export { Register, Login, Arduino, TodoList };

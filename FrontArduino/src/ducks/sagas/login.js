@@ -16,8 +16,20 @@ function* Session(action) {
   }
 }
 
+function* RegisterUser(action) {
+  const data = action.payload;
+  console.log('data do sagas', data);
+  try {
+    yield axios.post(`http://localhost:3333/user/store`, data);
+  } catch (error) {
+    console.log("eerrorr", error);
+  }
+}
+
 function* watchSessionActions() {
   yield takeEvery(LoginTypesTypes.SESSION, Session);
+  yield takeEvery(LoginTypesTypes.REGISTER_USER, RegisterUser);
+
 }
 
 export { watchSessionActions as default, watchSessionActions };
