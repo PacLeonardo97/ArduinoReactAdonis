@@ -22,7 +22,7 @@ const App = () => {
       console.log("error", error);
       setError("você não tem acesso a esta rota");
     }
-  }, [error]);
+  }, [error, chat]);
 
   const handleMessage = () => {
     try {

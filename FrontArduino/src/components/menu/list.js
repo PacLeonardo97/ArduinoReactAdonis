@@ -35,11 +35,11 @@ const Lista = () => {
         <List>
             {array.map(({ text, url, Icon, Logged }) => (
                 
-                <ListItem button key={text} style={{display: !Logged && 'none'}} >
+                <ListItem button key={text} style={{display: !Logged && 'none'}} onClick={() => history.push(url)} >
                     <ListItemIcon>
                         {Icon}
                     </ListItemIcon>
-                    <ListItemText primary={text} onClick={() => history.push(url)} />
+                    <ListItemText primary={text} />
                 </ListItem>
             ))}
         </List>
