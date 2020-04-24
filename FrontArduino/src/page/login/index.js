@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { TextField, Button } from "../../components";
 import { Creators as LoginActions } from "../../ducks/stores/login";
 import { Grid, Typography } from '@material-ui/core';
+import { Creators as ErrorActions} from '../../ducks/stores/errors';
 
 const Login = ({ handleSubmit }) => {
   const dispatch = useDispatch();
+
   const onSubmit = (data) => {
     dispatch(LoginActions.Session(data));
   };
+
+  const dispatchClear = useCallback(()=> { 
+    dispatch(ErrorActions.clearState());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setTimeout(()=>{
+      dispatchClear();
+    }, 3000);
+  }, [dispatchClear]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

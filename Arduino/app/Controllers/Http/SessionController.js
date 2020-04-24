@@ -9,7 +9,7 @@ class SessionController {
     } catch (error) {
       return response
         .status(error.status)
-        .send({ message: `não foi possível encontrar este email: ${email}` });
+        .send([{ message: `não foi possível encontrar este email: ${email}` }]);
     }
   }
 }

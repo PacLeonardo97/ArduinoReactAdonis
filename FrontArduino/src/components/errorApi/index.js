@@ -31,7 +31,7 @@ const ErrorApi = () => {
                 open={openToast}
                 close={handleCloseToast}
                 message={status && data && data.map(({ message }) => message)}
-                duration={3000}
+                duration={4000}
                 type={status !== 200 ? 'error' : 'success'}
              />
         </>

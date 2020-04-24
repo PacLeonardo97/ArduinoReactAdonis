@@ -4,14 +4,14 @@ import { createActions, createReducer } from "reduxsauce";
  */
 export const { Types, Creators } = createActions({
     Error: ['payload'],
-    clearState: ['']
+    clearState: []
 });
 
 /**
  * @description Handlers
  */
 const INITIAL_STATE = {
-  payload: [''],
+  payload: [],
 };
 
 const Error = (state = INITIAL_STATE, action) => ({
@@ -21,7 +21,7 @@ const Error = (state = INITIAL_STATE, action) => ({
 
 const clearState = (state = INITIAL_STATE) => ({
   ...state,
-  payload: ['']
+  payload: []
 });
 
 const HANDLERS = {

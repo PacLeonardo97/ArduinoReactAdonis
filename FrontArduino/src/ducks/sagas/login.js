@@ -12,7 +12,7 @@ function* Session(action) {
     const response = yield axios.post(`http://localhost:3333/session`, data);
     yield put(LoginTypesActions.Token(response.data.token));
   } catch (error) {
-    console.log("eerrorr", error);
+    yield put(ErrorActions.Error( error.response));
   }
 }
 
@@ -22,7 +22,6 @@ function* RegisterUser(action) {
    yield axios.post(`http://localhost:3333/user/store`, data);
    yield put(ErrorActions.Error({ status: 200, data:[{ message: 'cadastrado com sucesso' }]}));
   } catch (error) {
-    console.log('error', error.response)
     yield put(ErrorActions.Error( error.response));
   }
 }

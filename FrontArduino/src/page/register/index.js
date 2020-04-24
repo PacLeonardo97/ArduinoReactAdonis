@@ -1,23 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { Grid, Typography } from '@material-ui/core';
 import { Creators as LoginActions } from "../../ducks/stores/login";
 import { TextField, Button } from "../../components";
+import { Creators as ErrorActions} from '../../ducks/stores/errors';
 import { useHistory } from 'react-router-dom';
 
 const Register = ({ handleSubmit }) => {
     const dispatch = useDispatch();
     const selector = useSelector(store => store.error.payload.status)
-    const history = useHistory()
+    const history = useHistory();
+
     const onSubmit = (data) => {
-        try {
-            dispatch(LoginActions.RegisterUser(data));
-            
-        } catch (error) {
-            console.log('entrou aqui')
-        }
+        dispatch(LoginActions.RegisterUser(data));
     };
+
+    const dispatchClear = useCallback(()=> { 
+        dispatch(ErrorActions.clearState());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatchClear()
+    }, [dispatchClear]);
 
     useEffect(() => {
         if (selector === 200) {
