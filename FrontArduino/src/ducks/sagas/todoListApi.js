@@ -11,10 +11,10 @@ import axios from 'axios';
 
 function* PostTodo(action) {
     const data = action.payload;
-    const { token } = yield select(state => state.session.payload.token)
+    const { token } = yield select(state => state.session.payload?.token);
     try {
       yield axios.post(`http://localhost:3333/todoList/store`, data, { 
-        headers: { Authorization : `Bearer ${token}` }}
+        headers: { Authorization: `Bearer ${token}` }}
       );
     } catch (error) {
       yield put(ErrorActions.Error( error.response));
