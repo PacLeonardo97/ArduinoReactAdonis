@@ -1,9 +1,9 @@
 import { all } from "redux-saga/effects";
-import { watchTodoListActions } from "./todoList";
+import { watchTodoListApiActions } from "./todoListApi";
 import { watchSessionActions } from "./login";
 
 function* rootSaga() {
-  yield all([watchSessionActions(), watchTodoListActions()]);
+  yield all([watchSessionActions(), watchTodoListApiActions()]);
 }
 
 export { rootSaga as default, rootSaga };

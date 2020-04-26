@@ -4,36 +4,37 @@ import { Toast } from '../';
 import { Creators as ErrorActions} from '../../ducks/stores/errors';
 
 const ErrorApi = () => {
-    const [openToast, setOpenToast] = useState(true);
-    const dispatch = useDispatch();
+    // const [openToast, setOpenToast] = useState(true);
+    // const dispatch = useDispatch();
 
-    const handleCloseToast = () => {
-        setOpenToast(false);
-    };
+    // const handleCloseToast = () => {
+    //     setOpenToast(false);
+    // };
 
-    const { data, status } = useSelector(store => store.error.payload);
+    // const selector = useSelector(store => store?.error?.payload);
+    // const { data, status } = selector
+    
+    // const dispatchClear = useCallback(()=> { 
+    //     dispatch(ErrorActions.clearState());
+    // }, [dispatch])
 
-    const dispatchClear = useCallback(()=> { 
-        dispatch(ErrorActions.clearState());
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatchClear()
+    // }, [dispatchClear]);
 
-    useEffect(() => {
-        dispatchClear()
-    }, [dispatchClear]);
-
-    useEffect(() => {
-        data ? setOpenToast(true) : setOpenToast(false);
-    }, [data]);
+    // useEffect(() => {
+    //     data ? setOpenToast(true) : setOpenToast(false);
+    // }, [data]);
     
     return (
         <>
-            <Toast
+            {/* <Toast
                 open={openToast}
                 close={handleCloseToast}
-                message={status && data && data.map(({ message }) => message)}
+                message={status && data && data?.map(({ message }) => message)}
                 duration={4000}
                 type={status !== 200 ? 'error' : 'success'}
-             />
+             /> */}
         </>
     )
 };

@@ -6,3 +6,5 @@ Route.post("/session", "SessionController.store");
 
 Route.get("/user/index", "UserController.index");
 Route.post("/user/store", "UserController.store").validator("user");
+
+Route.post("/todoList/store", "TodoListController.store").validator("todoList").middleware('auth')

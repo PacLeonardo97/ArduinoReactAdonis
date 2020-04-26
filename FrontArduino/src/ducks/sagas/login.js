@@ -10,7 +10,7 @@ function* Session(action) {
   const data = action.payload;
   try {
     const response = yield axios.post(`http://localhost:3333/session`, data);
-    yield put(LoginTypesActions.Token(response.data.token));
+    yield put(LoginTypesActions.Token(response.data));
   } catch (error) {
     yield put(ErrorActions.Error( error.response));
   }

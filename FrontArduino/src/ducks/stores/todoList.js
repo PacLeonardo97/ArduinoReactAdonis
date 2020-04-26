@@ -5,6 +5,7 @@ import { createActions, createReducer } from "reduxsauce";
 export const { Types, Creators } = createActions({
   getAllTodoList: [],
   CountTodoList: ["payload"],
+  PostTodo: ["payload"]
 });
 
 /**

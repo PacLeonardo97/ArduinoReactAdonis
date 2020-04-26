@@ -2,6 +2,8 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import todoList from "./stores/todoList";
+import TodoListApi from './stores/todoListApi'
+
 import session from "./stores/login";
 import error from './stores/errors';
 
@@ -29,7 +31,8 @@ const rootReducer = combineReducers({
   form: formReducer,
   todoList: persistReducer(todoListConfig, todoList),
   session: persistReducer(SessionConfig, session),
-  error
+  error,
+  TodoListApi
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

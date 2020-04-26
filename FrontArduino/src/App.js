@@ -3,9 +3,9 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./ducks";
-import { TodoList, Login, Arduino, Register } from "./page";
 import { PrivateRoute, PublicRoute } from "./components/Route";
 import { Menu, ErrorApi } from './components';
+import { TodoList, Login, Arduino, Register, TodoListApi } from "./page";
 
 const App = () => {
   return (
@@ -28,6 +28,8 @@ const App = () => {
               exact
             />
             <PrivateRoute path="/todo" component={TodoList} exact />
+            <PrivateRoute path="/todoApi" component={TodoListApi} exact />
+
             <PrivateRoute path="/Arduino" component={Arduino} exact />
           </Switch>
         </BrowserRouter>

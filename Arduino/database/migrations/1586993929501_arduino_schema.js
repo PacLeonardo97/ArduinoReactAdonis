@@ -9,7 +9,6 @@ class ArduinoSchema extends Schema {
       table.increments();
       table.string("color");
       table.string("type");
-
       table.timestamps();
     });
   }

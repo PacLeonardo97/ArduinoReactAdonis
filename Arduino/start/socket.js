@@ -15,4 +15,5 @@
 
 const Ws = use("Ws");
 
-Ws.channel("changelight", "ArduinoController").middleware(["auth"]);
+Ws.channel("changelight", "ArduinoController")
+    .middleware(["auth"]);

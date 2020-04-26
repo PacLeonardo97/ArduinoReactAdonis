@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import Ws from "@adonisjs/websocket-client";
 
@@ -6,12 +7,15 @@ const App = () => {
   const [lamp, setLamp] = useState("black");
   const [error, setError] = useState("");
   const [light, setLight] = useState("black");
-  const endpoint = Ws("ws://192.168.1.103:3333");
-  const chat = endpoint.subscribe("changelight");
+  const { token } = useSelector(store => store.session.payload?.token);
 
+  const endpoint = Ws("ws://192.168.0.129:3333");
+  const chat = endpoint.subscribe("changelight");
   useEffect(() => {
-    endpoint.connect();
-  }, [endpoint]);
+    endpoint
+      .withApiToken(token)
+      .connect();
+  }, [endpoint, token]);
 
   useEffect(() => {
     try {

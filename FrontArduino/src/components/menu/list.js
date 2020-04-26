@@ -5,38 +5,40 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Lista = () => {
-  const selector = useSelector(store => store.session.payload);
+  const selector = useSelector(store => store.session.payload?.token?.token);
   const history = useHistory();
-  const Logged = selector.length > 0;
+  const Logged = !selector?.length > 0;
   
   const array = [{
       text:'Login',
       url: '/login',
       Icon: <PersonIcon />,
-      Logged: !Logged
+      Logged
     },{
       text:'Registrar',
       url: '/registrar',
       Icon: <PersonIcon />,
-      Logged: !Logged
+      Logged
     }, {
       text: 'Arduino',
       url: '/Arduino',
       Icon: <AndroidIcon />,
-      Logged
      }, {
       text: 'TodoList',
       url: '/todo',
       Icon: <AddIcon />,
-      Logged
+    }, {
+      text: 'TodoListaPI',
+      url: '/todoApi',
+      Icon: <AddIcon />,
     }];
 
     return (
         <List>
             {array.map(({ text, url, Icon, Logged }) => (
                 
-                <ListItem button key={text} style={{display: !Logged && 'none'}} onClick={() => history.push(url)} >
-                    <ListItemIcon>
+                <ListItem button key={text} style={{display: typeof Logged !== 'undefined' && 'none'}} onClick={() => history.push(url)} >
+                      <ListItemIcon>
                         {Icon}
                     </ListItemIcon>
                     <ListItemText primary={text} />

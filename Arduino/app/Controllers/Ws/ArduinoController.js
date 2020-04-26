@@ -9,7 +9,7 @@ class ArduinoController {
     const { socket, request } = params;
     this.socket = socket;
     this.request = request;
-
+    console.log('entrou aqui')
     const HandleArduino = async () => {
       const { type, color } = await Database.collection("arduinos")
         .sort({ field: "asc", _id: -1 })
@@ -28,7 +28,9 @@ class ArduinoController {
     await arduino.save();
     try {
       portSerial.write(`${arduino.type}\n`);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
     this.socket.broadcastToAll("message", message);
   }
 
